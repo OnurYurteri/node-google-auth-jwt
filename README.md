@@ -3,7 +3,10 @@
 - It's build on top of [scalable-node](https://github.com/OnurYurteri/scalable-node) boilerplate.
 - What's more
   - Sign & Login with google.
-  - Retrieves users upcoming events.
+  - Store users google token on mongo, return your own jwt token!
+  - Authenticate with jwt!
+  - Profit!
+  - And oh, it retrieves users upcoming events for demo purposes.
 
 ### Made Out Of
 

@@ -6,7 +6,7 @@ exports.getEvents = async (req, res) => {
   logger.info(`controller::getEvents::googleToken::${JSON.stringify(googleToken)}::{}`);
   try {
     const data = await GoogleClient.getEvents(googleToken);
-    res.status(200).json({ status: 200, message: 'Success!', data });
+    return res.status(200).json({ status: 200, message: 'Success!', data });
   } catch (e) {
     logger.error(`controller::getEvents::from::${e.from}::message::${e.message}::{}`);
     return res

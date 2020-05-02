@@ -1,13 +1,12 @@
 require('dotenv').config();
 const createToken = require('./service').createToken;
-const verifyTokenMiddleware = require('./service').verifyTokenMiddleware;
+const verifyTokenMiddleware = require('./middleware').verifyToken;
 
 let mockUser = {};
 
 beforeEach(() => {
   mockUser = {
     _id: '5ea4a3296e0ca61b806e92f0',
-    username: 'test-uname',
     email: 'test-email@a.com',
     pass: '$2b$15$G1copsc2SEDhbvVXOy0hbemO0CFF4j3sAgIPi3MDhR8kCjyxaSnsm',
     name: 'test-name',

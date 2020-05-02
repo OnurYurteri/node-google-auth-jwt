@@ -14,7 +14,6 @@ exports.login = [
 ];
 
 exports.create = [
-  check('username').notEmpty().withMessage('Username cannot be empty!'),
   check('email').notEmpty().isEmail().withMessage('Email must be valid!'),
   check('pass').notEmpty().withMessage('Password cannot be empty!'),
   check('name').notEmpty().withMessage('Name cannot be empty!'),

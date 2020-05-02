@@ -1,16 +1,17 @@
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
-const AppService = require('./service');
+const AppMiddleware = require('./middleware');
 const logger = require('../logger/service').app;
 
 /* Import Routes */
 const UserRoutes = require('../user/routes');
+const CalendarRoutes = require('../calendar/routes');
 
 /* Express App Creation & Configuration */
 const app = express();
 app.use(express.json());
-app.use(AppService.invalidRequestBodyMiddleware);
+app.use(AppMiddleware.invalidRequest);
 app.use(helmet());
 app.set('trust proxy', true);
 morgan.token('remote-addr', (req) => {
@@ -20,6 +21,7 @@ app.use(morgan('short', { stream: logger.stream }));
 
 /* Add Routes */
 app.use('/user', UserRoutes);
-app.use('/', AppService.defaultPathHandler);
+app.use('/calendar', CalendarRoutes);
+app.use('/', AppMiddleware.defaultPathHandler);
 
 exports.App = app;

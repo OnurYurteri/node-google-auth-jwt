@@ -6,15 +6,15 @@ const SALT_FACTOR = 15;
 
 const UserSchema = new mongoose.Schema(
   {
-    username: { type: String, required: true },
     email: {
       type: String,
       unique: true,
       required: true,
     },
-    pass: { type: String, required: true },
+    pass: { type: String },
     name: { type: String, required: true },
     surname: { type: String, required: true },
+    googleToken: { type: Object },
   },
   { timestamps: true }
 );

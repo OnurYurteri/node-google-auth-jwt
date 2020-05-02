@@ -54,8 +54,8 @@ appLogger.stream = {
 
 exports.app = appLogger;
 
-exports.db = getLogger({
-  file: { ...winstonOptions.file, filename: `${appRoot}/logs/db.log` },
+exports.calendar = getLogger({
+  file: { ...winstonOptions.file, filename: `${appRoot}/logs/calendar.log` },
   console: { ...winstonOptions.console },
 });
 

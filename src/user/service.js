@@ -27,17 +27,48 @@ exports.getUserWithEmail = async (email) => {
   }
 };
 
-exports.create = async (username, email, pass, name, surname) => {
+exports.create = async (email, pass, name, surname) => {
   logger.info(
-    `service::create::username::${username}::email::${email}::pass::${pass}::name::${name}::surname::${surname}::{}`
+    `service::create::email::${email}::pass::${pass}::name::${name}::surname::${surname}::{}`
   );
-  const document = new User({ username, email, pass, name, surname });
+  const document = new User({ email, pass, name, surname });
 
   try {
     const user = await document.save();
     return user;
   } catch (e) {
     e.from = 'user_service_create';
+    throw e;
+  }
+};
+
+exports.createWithGoogle = async (googleUser, googleToken) => {
+  const email = googleUser.emailAddresses[0].value;
+  const name = googleUser.names[0].givenName;
+  const surname = googleUser.names[0].familyName;
+  logger.info(
+    `service::createWithGoogle::email::${email}::name::${name}::surname::${surname}::googleUser::${googleUser}::googleToken::${JSON.stringify(
+      googleToken
+    )}::{}`
+  );
+  const document = new User({ email, name, surname, googleToken });
+
+  try {
+    const user = await document.save();
+    return user;
+  } catch (e) {
+    e.from = 'user_service_createWithGoogle';
+    throw e;
+  }
+};
+
+exports.getGoogleTokenWithEmail = async (email) => {
+  logger.info(`service::getGoogleTokenWithEmail::email::${email}::{}`);
+  try {
+    const token = await User.findOne({ email }, { googleToken: 1 });
+    return token.toObject();
+  } catch (e) {
+    e.from = 'user_service_getGoogleTokenWithEmail';
     throw e;
   }
 };

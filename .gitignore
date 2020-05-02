@@ -6,3 +6,4 @@ init-mongo.js
 mongo-volume
 .mongo/start-mongo-local.sh
 src/coverage
+src/app/credentials/google.json

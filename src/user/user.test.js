@@ -38,7 +38,6 @@ beforeAll(async () => {
 
 beforeEach(() => {
   testUser = {
-    username: 'test-uname',
     email: 'test-email@a.com',
     pass: 'test-pass',
     name: 'test-name',
@@ -61,7 +60,6 @@ describe('Service', () => {
 
   it('Create user', async () => {
     const returnedUser = await create(
-      testUser.username,
       testUser.email,
       testUser.pass,
       testUser.name,
@@ -69,7 +67,6 @@ describe('Service', () => {
     );
 
     expect('_id' in returnedUser).toBe(true);
-    expect(returnedUser.username).toBe(testUser.username);
     expect(returnedUser.email).toBe(testUser.email);
     expect(returnedUser.pass).not.toBeNull();
     expect(returnedUser.pass).not.toBeUndefined();
@@ -79,7 +76,7 @@ describe('Service', () => {
   });
 
   it('Get users', async () => {
-    await create(testUser.username, testUser.email, testUser.pass, testUser.name, testUser.surname);
+    await create(testUser.email, testUser.pass, testUser.name, testUser.surname);
     const users = await getUsers();
     expect(users.length > 0).toBe(true);
   });
@@ -95,13 +92,7 @@ describe('Service', () => {
   });
 
   it('Get user with email', async () => {
-    const { id } = await create(
-      testUser.username,
-      testUser.email,
-      testUser.pass,
-      testUser.name,
-      testUser.surname
-    );
+    const { id } = await create(testUser.email, testUser.pass, testUser.name, testUser.surname);
 
     const returnedUser = await getUserWithEmail(testUser.email);
     // eslint-disable-next-line no-underscore-dangle
@@ -113,13 +104,7 @@ describe('Model', () => {
   let mockUser;
 
   beforeEach(async () => {
-    mockUser = await create(
-      testUser.username,
-      testUser.email,
-      testUser.pass,
-      testUser.name,
-      testUser.surname
-    );
+    mockUser = await create(testUser.email, testUser.pass, testUser.name, testUser.surname);
   });
 
   afterEach(async () => {

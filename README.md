@@ -1,25 +1,9 @@
 ## What is it?
 
-- It's a experimental backend boilerplate for node
-- Aims to create ground-basis/examples for
-  - Loose coupled modules that could be converted to standalone app (Micro-service 101)
-  - Pluggable logging module
-  - Implementation of authentication (JWT)
-  - Strategy for
-    - Building and deploying app (Docker/docker-compose)
-    - Scaling (Loadbalancing, caching etc)
-    - Consistent contributions (Linters/Prettiers)
-
-### Upcoming
-
-- [x] Add logging mechanism
-- [x] Add mongo dao
-- [ ] Validator
-- [x] Dockerize app
-- [x] Ready to loadbalancing?
-- [ ] Queuing mechanism (Kafka/RabbitMQ)?
-- [ ] Shared cache (Hazelcast/Redis/Memcached)?
-- [ ] Analytics?
+- It's build on top of [scalable-node](https://github.com/OnurYurteri/scalable-node) boilerplate.
+- What's more
+  - Sign & Login with google.
+  - Retrieves users upcoming events.
 
 ### Made Out Of
 
@@ -37,12 +21,13 @@
 - [prettier-eslint](https://github.com/prettier/prettier-eslint)
 - [node-jsonwebtoken](https://github.com/auth0/node-jsonwebtoken)
 - [dotenv](https://github.com/motdotla/dotenv)
+- [google-api-nodejs-client](https://github.com/googleapis/google-api-nodejs-client)
 
 ### Installing
 
 ```bash
-git clone https://github.com/OnurYurteri/scalable-node.git
-cd scalable-node/src
+git clone https://github.com/OnurYurteri/node-google-auth-jwt.git
+cd node-google-auth-jwt/src
 npm ci
 ```
 
@@ -61,7 +46,7 @@ npm ci
 ### Run at local server
 
 ```bash
-cd scalable-node/src
+cd node-google-auth-jwt/src
 cp .env.example .env
 
 npm run start
@@ -71,9 +56,9 @@ http://localhost:3000/
 ### Run with Docker
 
 ```bash
-cd scalable-node
-docker build -t scalable-node_src:1.0 .
-docker run --publish 3000:3000 scalable-node_src:1.0
+cd node-google-auth-jwt
+docker build -t node-google-auth-jwt_src:1.0 .
+docker run --publish 3000:3000 node-google-auth-jwt_src:1.0
 
 http://localhost:3000/
 ```
@@ -81,8 +66,8 @@ http://localhost:3000/
 ### With docker-compose (Multiple instance, nginx, mongoDB)
 
 ```bash
-cd scalable-node
-docker build -t scalable-node_src:1.0 .
+cd node-google-auth-jwt
+docker build -t node-google-auth-jwt_src:1.0 .
 docker-compose up
 
 http://localhost/

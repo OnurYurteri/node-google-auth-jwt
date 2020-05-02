@@ -28,7 +28,7 @@
 
 ### Installing
 
-- Copy contents of your credentials.json which you retreived from [Google Developers Console](https://console.developers.google.com/) to 'src/app/credentials/google.json'
+- Copy contents of your _credentials.json_ which you retreived from [Google Developers Console](https://console.developers.google.com/) to _src/app/credentials/google.json_
 
 ```bash
 git clone https://github.com/OnurYurteri/node-google-auth-jwt.git
